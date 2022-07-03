@@ -1,5 +1,7 @@
 package stepsDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,35 +12,42 @@ import pages.AddCustomerPage;
 import pages.ListCustomersPage;
 import pages.LoginPage;
 import pages.ManagerPage;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static pages.BaseInfo.*;
 
-public class AddCustomerPageSteps extends Hooks{
+import static pages.BaseInfo.LOGIN;
+import static pages.BaseInfo.MAIN_URL;
+
+public class AddCustomerPageSteps{
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ManagerPage managerPage;
     protected AddCustomerPage addCustomerPage;
     protected ListCustomersPage listCustomersPage;
     protected List<String> userInfo;
+
+    @Before
+    public void setDriver(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        loginPage = new LoginPage(driver);
+        managerPage = new ManagerPage(driver);
+        addCustomerPage = new AddCustomerPage(driver);
+        listCustomersPage = new ListCustomersPage(driver);
+        userInfo = new ArrayList<>();
+    }
   @Given("I am on the Login Page")
    public void i_am_on_the_login_page() {
-      WebDriverManager.chromedriver().setup();
-      driver = new ChromeDriver();
-      WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
       driver.get(MAIN_URL + LOGIN);
-      driver.manage().window().maximize();
-      loginPage = new LoginPage(driver);
-      managerPage = new ManagerPage(driver);
-      addCustomerPage = new AddCustomerPage(driver);
-      listCustomersPage = new ListCustomersPage(driver);
-      userInfo = new ArrayList<>();
 
       String actualTitle = loginPage.getActualTitle();
       String expectedTitle = loginPage.getExpectedTitle();
-      TestAssertions.assertPageUrl(actualTitle,expectedTitle);
+      TestAssertions.assertPageTitle(actualTitle,expectedTitle);
     }
     @When("I navigate to the Manager Page")
     public void i_navigate_to_the_manager_page() {
@@ -73,9 +82,13 @@ public class AddCustomerPageSteps extends Hooks{
     public void i_click_on_the_delete_button() {
         listCustomersPage.deleteUser();
     }
+
     @Then("I should see the customer is deleted")
     public void i_should_see_the_customer_is_deleted() {
         TestAssertions.assertDeletedCustomerInfo(userInfo,listCustomersPage.getAddedCustomer());
+    }
+    @After
+    public void closeBrowser(){
         driver.quit();
     }
 }

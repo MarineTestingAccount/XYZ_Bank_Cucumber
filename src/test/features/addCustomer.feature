@@ -1,6 +1,7 @@
 Feature: As a Bank Manager I want to be able to create a new customer
+         and delete created customer
 
-  Scenario: Add a New Customer
+  Scenario: Add a New Customer, search created customer and delete
     Given I am on the Login Page
     When I navigate to the Manager Page
     And I click on the Add Customer button
