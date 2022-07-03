@@ -12,14 +12,11 @@ import pages.AddCustomerPage;
 import pages.ListCustomersPage;
 import pages.LoginPage;
 import pages.ManagerPage;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static pages.BaseInfo.LOGIN;
-import static pages.BaseInfo.MAIN_URL;
+import static pages.BaseInfo.*;
 
 public class AddCustomerPageSteps{
     protected WebDriver driver;
@@ -33,7 +30,7 @@ public class AddCustomerPageSteps{
     public void setDriver(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         managerPage = new ManagerPage(driver);
@@ -44,7 +41,6 @@ public class AddCustomerPageSteps{
   @Given("I am on the Login Page")
    public void i_am_on_the_login_page() {
       driver.get(MAIN_URL + LOGIN);
-
       String actualTitle = loginPage.getActualTitle();
       String expectedTitle = loginPage.getExpectedTitle();
       TestAssertions.assertPageTitle(actualTitle,expectedTitle);
@@ -82,7 +78,6 @@ public class AddCustomerPageSteps{
     public void i_click_on_the_delete_button() {
         listCustomersPage.deleteUser();
     }
-
     @Then("I should see the customer is deleted")
     public void i_should_see_the_customer_is_deleted() {
         TestAssertions.assertDeletedCustomerInfo(userInfo,listCustomersPage.getAddedCustomer());
