@@ -32,10 +32,10 @@ public class ListCustomersPage {
         search.sendKeys(user);
     }
 
-    public List<String> getAddedCustomer() throws InterruptedException {
+    public List<String> getAddedCustomer() {
         WebElement usersList = driver.findElement(addedUsersList);
         List<WebElement> raw = usersList.findElements(addedUsersListRaw);
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
         String getFirstName = "";
         String getLastName = "";
         String getPostCode = "";
@@ -67,11 +67,11 @@ public class ListCustomersPage {
     }
 
 
-    public void deleteUser() throws InterruptedException {
+    public void deleteUser(){
 
         WebElement clickOnDeleteBtn = driver.findElement(deleteCustomer);
         clickOnDeleteBtn.click();
         System.out.println("deleted");
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
     }
 }

@@ -43,11 +43,10 @@ public class AddCustomerPage {
     public  void acceptPopUp(){
         driver.switchTo().alert().accept();
     }
-    public void clickOnCustomersBtn() throws InterruptedException {
+    public void clickOnCustomersBtn() {
         WebElement customersBtn = driver.findElement(customersListBtn);
         customersBtn.click();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
     }
-
 }

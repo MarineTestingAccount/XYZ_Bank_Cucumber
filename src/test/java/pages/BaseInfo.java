@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.By;
 
 public class BaseInfo {
     public static final String
@@ -9,5 +9,8 @@ public class BaseInfo {
             MANAGER = "manager",
             ADD_CUSTOMER = "addCust",
             CUSTOMER_LIST = "list";
+            public static By PAGE_TITLE = By.tagName("title");
+
 }
+
 

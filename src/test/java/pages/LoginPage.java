@@ -33,6 +33,13 @@ public class LoginPage {
     {
         this.driver = driver;
     }
+
+    public String getActualTitle(){
+        return driver.getTitle();
+    }
+    public String getExpectedTitle(){
+       return driver.findElement(BaseInfo.PAGE_TITLE).getAttribute("textContent");
+    }
     public void clickOnTheLoginBtn() {
         WebElement clickOnButton = driver.findElement(bankManagerLoginBtn);
         clickOnButton.click();
