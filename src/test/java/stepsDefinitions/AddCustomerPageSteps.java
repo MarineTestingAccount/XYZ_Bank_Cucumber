@@ -10,15 +10,11 @@ import pages.AddCustomerPage;
 import pages.ListCustomersPage;
 import pages.LoginPage;
 import pages.ManagerPage;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static pages.BaseInfo.LOGIN;
-import static pages.BaseInfo.MAIN_URL;
-
+import static pages.BaseInfo.*;
 
 public class AddCustomerPageSteps extends Hooks{
     protected WebDriver driver;
@@ -43,13 +39,11 @@ public class AddCustomerPageSteps extends Hooks{
       String actualTitle = loginPage.getActualTitle();
       String expectedTitle = loginPage.getExpectedTitle();
       TestAssertions.assertPageUrl(actualTitle,expectedTitle);
-
     }
     @When("I navigate to the Manager Page")
     public void i_navigate_to_the_manager_page() {
         loginPage.clickOnTheLoginBtn();
         loginPage.navigateToManagerPage();
-
     }
     @When("I click on the Add Customer button")
     public void i_click_on_the_add_customer_button() {
@@ -63,21 +57,17 @@ public class AddCustomerPageSteps extends Hooks{
         addCustomerPage.setLastName(userInfo.get(1));
         addCustomerPage.setPostCode(userInfo.get(2));
         addCustomerPage.clickOnSubmit();
-
     }
     @When("I accept the popup")
     public void i_accept_the_popup() {
         addCustomerPage.acceptPopUp();
         addCustomerPage.clickOnCustomersBtn();
-
     }
     @Then("I should be able to add a new customer successfully")
     public void i_should_be_able_to_add_a_new_customer_successfully() {
         listCustomersPage.searchCustomer("NewUser");
         listCustomersPage.getAddedCustomer();
-        //Assert.assertEquals(userInfo,listCustomersPage.getAddedCustomer());
         TestAssertions.assertAddedCustomerInfo(userInfo,listCustomersPage.getAddedCustomer());
-
     }
     @When("I click on the Delete button")
     public void i_click_on_the_delete_button() {
@@ -85,9 +75,7 @@ public class AddCustomerPageSteps extends Hooks{
     }
     @Then("I should see the customer is deleted")
     public void i_should_see_the_customer_is_deleted() {
-        //Assert.assertNotEquals(userInfo,listCustomersPage.getAddedCustomer());
         TestAssertions.assertDeletedCustomerInfo(userInfo,listCustomersPage.getAddedCustomer());
         driver.quit();
     }
-
 }

@@ -1,10 +1,10 @@
 package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 public class AddCustomerPage {
     WebDriver driver;
@@ -39,14 +39,12 @@ public class AddCustomerPage {
         WebElement submitAddCustomer = driver.findElement(addCustomerBtn);
         submitAddCustomer.click();
     }
-
     public  void acceptPopUp(){
         driver.switchTo().alert().accept();
     }
     public void clickOnCustomersBtn() {
         WebElement customersBtn = driver.findElement(customersListBtn);
         customersBtn.click();
-        //Thread.sleep(2000);
-
     }
 }
+

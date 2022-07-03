@@ -28,12 +28,10 @@ public class LoginPage {
     //Initialize Locators
     private final By
             bankManagerLoginBtn = By.xpath("//button[@ng-click = 'manager()']");
-
     public LoginPage(WebDriver driver)
     {
         this.driver = driver;
     }
-
     public String getActualTitle(){
         return driver.getTitle();
     }
@@ -49,5 +47,5 @@ public class LoginPage {
         wait.until(ExpectedConditions.urlContains(MANAGER));
         return driver.getCurrentUrl();
     }
-
 }
+
