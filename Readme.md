@@ -14,9 +14,9 @@ ________________________________________________________________________________
 ### Description 
 Automation Testing Using Selenium and Cucumber with Java
 ### Requirements
-* Java Development Kit
-* Maven
-* WebDriver, using ChromeDriver
+* Java Development Kit (18.0.1)
+* Apache Maven (3.8.6)
+* WebDriver, using ChromeDriver (according to your Chrome version)
 
 ### Running Tests
 * Clone the repository from your fork to this directory
